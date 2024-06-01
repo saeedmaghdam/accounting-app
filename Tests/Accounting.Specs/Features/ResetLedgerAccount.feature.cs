@@ -106,18 +106,18 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 await this.ScenarioStartAsync();
-                Reqnroll.Table table11 = new Reqnroll.Table(new string[] {
+                Reqnroll.Table table48 = new Reqnroll.Table(new string[] {
                             "Account",
                             "Debit",
                             "Credit",
                             "Balance"});
-                table11.AddRow(new string[] {
+                table48.AddRow(new string[] {
                             "Sales Revenue",
                             "5000",
                             "0",
                             "5000"});
 #line 7
-    await testRunner.GivenAsync("a ledger account with a balance", ((string)(null)), table11, "Given ");
+    await testRunner.GivenAsync("a ledger account with a balance", ((string)(null)), table48, "Given ");
 #line hidden
 #line 10
     await testRunner.WhenAsync("the fiscal year is closed", ((string)(null)), ((Reqnroll.Table)(null)), "When ");

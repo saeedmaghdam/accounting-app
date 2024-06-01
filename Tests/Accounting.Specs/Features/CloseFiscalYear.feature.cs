@@ -184,6 +184,880 @@ this.ScenarioInitialize(scenarioInfo);
             await this.ScenarioCleanupAsync();
         }
         
+        [Xunit.SkippableFactAttribute(DisplayName="Closing the fiscal year with net income")]
+        [Xunit.TraitAttribute("FeatureTitle", "Close Fiscal Year")]
+        [Xunit.TraitAttribute("Description", "Closing the fiscal year with net income")]
+        [Xunit.TraitAttribute("Category", "tag1")]
+        public async System.Threading.Tasks.Task ClosingTheFiscalYearWithNetIncome()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "tag1"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            Reqnroll.ScenarioInfo scenarioInfo = new Reqnroll.ScenarioInfo("Closing the fiscal year with net income", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 32
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                await this.ScenarioStartAsync();
+                Reqnroll.Table table11 = new Reqnroll.Table(new string[] {
+                            "Date",
+                            "Description"});
+                table11.AddRow(new string[] {
+                            "2024-01-01",
+                            "Revenue from Sales"});
+                table11.AddRow(new string[] {
+                            "2024-01-02",
+                            "Office Supplies Expense"});
+                table11.AddRow(new string[] {
+                            "2024-01-03",
+                            "Rent Expense"});
+                table11.AddRow(new string[] {
+                            "2024-01-04",
+                            "Service Revenue"});
+                table11.AddRow(new string[] {
+                            "2024-01-05",
+                            "Utilities Expense"});
+#line 33
+    await testRunner.GivenAsync("the following transactions", ((string)(null)), table11, "Given ");
+#line hidden
+                Reqnroll.Table table12 = new Reqnroll.Table(new string[] {
+                            "Type",
+                            "Account",
+                            "Amount"});
+                table12.AddRow(new string[] {
+                            "Debit",
+                            "Bank",
+                            "5000"});
+                table12.AddRow(new string[] {
+                            "Credit",
+                            "Sales Revenue",
+                            "5000"});
+#line 40
+    await testRunner.AndAsync("the following entries for transaction on date \"2024-01-01\"", ((string)(null)), table12, "And ");
+#line hidden
+                Reqnroll.Table table13 = new Reqnroll.Table(new string[] {
+                            "Type",
+                            "Account",
+                            "Amount"});
+                table13.AddRow(new string[] {
+                            "Debit",
+                            "Office Supplies",
+                            "200"});
+                table13.AddRow(new string[] {
+                            "Credit",
+                            "Accounts Payable",
+                            "200"});
+#line 44
+    await testRunner.AndAsync("the following entries for transaction on date \"2024-01-02\"", ((string)(null)), table13, "And ");
+#line hidden
+                Reqnroll.Table table14 = new Reqnroll.Table(new string[] {
+                            "Type",
+                            "Account",
+                            "Amount"});
+                table14.AddRow(new string[] {
+                            "Debit",
+                            "Rent Expense",
+                            "1000"});
+                table14.AddRow(new string[] {
+                            "Credit",
+                            "Cash",
+                            "1000"});
+#line 48
+    await testRunner.AndAsync("the following entries for transaction on date \"2024-01-03\"", ((string)(null)), table14, "And ");
+#line hidden
+                Reqnroll.Table table15 = new Reqnroll.Table(new string[] {
+                            "Type",
+                            "Account",
+                            "Amount"});
+                table15.AddRow(new string[] {
+                            "Debit",
+                            "Cash",
+                            "3000"});
+                table15.AddRow(new string[] {
+                            "Credit",
+                            "Service Revenue",
+                            "3000"});
+#line 52
+    await testRunner.AndAsync("the following entries for transaction on date \"2024-01-04\"", ((string)(null)), table15, "And ");
+#line hidden
+                Reqnroll.Table table16 = new Reqnroll.Table(new string[] {
+                            "Type",
+                            "Account",
+                            "Amount"});
+                table16.AddRow(new string[] {
+                            "Debit",
+                            "Utilities Expense",
+                            "150"});
+                table16.AddRow(new string[] {
+                            "Credit",
+                            "Accounts Payable",
+                            "150"});
+#line 56
+    await testRunner.AndAsync("the following entries for transaction on date \"2024-01-05\"", ((string)(null)), table16, "And ");
+#line hidden
+#line 60
+    await testRunner.WhenAsync("the fiscal year is closed", ((string)(null)), ((Reqnroll.Table)(null)), "When ");
+#line hidden
+#line 61
+    await testRunner.ThenAsync("the journal should have a transaction with date \"current date\", description \"Clos" +
+                        "e Fiscal Year\", an entry with debit account \"Income Summary\", and an entry with " +
+                        "credit account \"Retained Earnings\", and amount 6650", ((string)(null)), ((Reqnroll.Table)(null)), "Then ");
+#line hidden
+#line 62
+    await testRunner.AndAsync("the ledger should reset all revenue and expense accounts to zero", ((string)(null)), ((Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 63
+    await testRunner.AndAsync("the ledger should update the \"Owner\'s Equity\" account with a credit of 6650", ((string)(null)), ((Reqnroll.Table)(null)), "And ");
+#line hidden
+            }
+            await this.ScenarioCleanupAsync();
+        }
+        
+        [Xunit.SkippableFactAttribute(DisplayName="Closing the fiscal year with net loss")]
+        [Xunit.TraitAttribute("FeatureTitle", "Close Fiscal Year")]
+        [Xunit.TraitAttribute("Description", "Closing the fiscal year with net loss")]
+        [Xunit.TraitAttribute("Category", "tag1")]
+        public async System.Threading.Tasks.Task ClosingTheFiscalYearWithNetLoss()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "tag1"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            Reqnroll.ScenarioInfo scenarioInfo = new Reqnroll.ScenarioInfo("Closing the fiscal year with net loss", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 66
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                await this.ScenarioStartAsync();
+                Reqnroll.Table table17 = new Reqnroll.Table(new string[] {
+                            "Date",
+                            "Description"});
+                table17.AddRow(new string[] {
+                            "2024-01-01",
+                            "Revenue from Sales"});
+                table17.AddRow(new string[] {
+                            "2024-01-02",
+                            "Office Supplies Expense"});
+                table17.AddRow(new string[] {
+                            "2024-01-03",
+                            "Rent Expense"});
+                table17.AddRow(new string[] {
+                            "2024-01-04",
+                            "Utilities Expense"});
+#line 67
+    await testRunner.GivenAsync("the following transactions", ((string)(null)), table17, "Given ");
+#line hidden
+                Reqnroll.Table table18 = new Reqnroll.Table(new string[] {
+                            "Type",
+                            "Account",
+                            "Amount"});
+                table18.AddRow(new string[] {
+                            "Debit",
+                            "Bank",
+                            "2000"});
+                table18.AddRow(new string[] {
+                            "Credit",
+                            "Sales Revenue",
+                            "2000"});
+#line 73
+    await testRunner.AndAsync("the following entries for transaction on date \"2024-01-01\"", ((string)(null)), table18, "And ");
+#line hidden
+                Reqnroll.Table table19 = new Reqnroll.Table(new string[] {
+                            "Type",
+                            "Account",
+                            "Amount"});
+                table19.AddRow(new string[] {
+                            "Debit",
+                            "Office Supplies",
+                            "500"});
+                table19.AddRow(new string[] {
+                            "Credit",
+                            "Accounts Payable",
+                            "500"});
+#line 77
+    await testRunner.AndAsync("the following entries for transaction on date \"2024-01-02\"", ((string)(null)), table19, "And ");
+#line hidden
+                Reqnroll.Table table20 = new Reqnroll.Table(new string[] {
+                            "Type",
+                            "Account",
+                            "Amount"});
+                table20.AddRow(new string[] {
+                            "Debit",
+                            "Rent Expense",
+                            "1500"});
+                table20.AddRow(new string[] {
+                            "Credit",
+                            "Cash",
+                            "1500"});
+#line 81
+    await testRunner.AndAsync("the following entries for transaction on date \"2024-01-03\"", ((string)(null)), table20, "And ");
+#line hidden
+                Reqnroll.Table table21 = new Reqnroll.Table(new string[] {
+                            "Type",
+                            "Account",
+                            "Amount"});
+                table21.AddRow(new string[] {
+                            "Debit",
+                            "Utilities Expense",
+                            "300"});
+                table21.AddRow(new string[] {
+                            "Credit",
+                            "Accounts Payable",
+                            "300"});
+#line 85
+    await testRunner.AndAsync("the following entries for transaction on date \"2024-01-04\"", ((string)(null)), table21, "And ");
+#line hidden
+#line 89
+    await testRunner.WhenAsync("the fiscal year is closed", ((string)(null)), ((Reqnroll.Table)(null)), "When ");
+#line hidden
+#line 90
+    await testRunner.ThenAsync("the journal should have a transaction with date \"current date\", description \"Clos" +
+                        "e Fiscal Year\", an entry with debit account \"Retained Earnings\", and an entry wi" +
+                        "th credit account \"Income Summary\", and amount 300", ((string)(null)), ((Reqnroll.Table)(null)), "Then ");
+#line hidden
+#line 91
+    await testRunner.AndAsync("the ledger should reset all revenue and expense accounts to zero", ((string)(null)), ((Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 92
+    await testRunner.AndAsync("the ledger should update the \"Owner\'s Equity\" account with a debit of 300", ((string)(null)), ((Reqnroll.Table)(null)), "And ");
+#line hidden
+            }
+            await this.ScenarioCleanupAsync();
+        }
+        
+        [Xunit.SkippableFactAttribute(DisplayName="Closing the fiscal year with dividends declared")]
+        [Xunit.TraitAttribute("FeatureTitle", "Close Fiscal Year")]
+        [Xunit.TraitAttribute("Description", "Closing the fiscal year with dividends declared")]
+        [Xunit.TraitAttribute("Category", "tag1")]
+        public async System.Threading.Tasks.Task ClosingTheFiscalYearWithDividendsDeclared()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "tag1"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            Reqnroll.ScenarioInfo scenarioInfo = new Reqnroll.ScenarioInfo("Closing the fiscal year with dividends declared", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 95
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                await this.ScenarioStartAsync();
+                Reqnroll.Table table22 = new Reqnroll.Table(new string[] {
+                            "Date",
+                            "Description"});
+                table22.AddRow(new string[] {
+                            "2024-01-01",
+                            "Revenue from Sales"});
+                table22.AddRow(new string[] {
+                            "2024-01-02",
+                            "Office Supplies Expense"});
+                table22.AddRow(new string[] {
+                            "2024-01-03",
+                            "Rent Expense"});
+                table22.AddRow(new string[] {
+                            "2024-01-04",
+                            "Dividends Declared"});
+#line 96
+    await testRunner.GivenAsync("the following transactions", ((string)(null)), table22, "Given ");
+#line hidden
+                Reqnroll.Table table23 = new Reqnroll.Table(new string[] {
+                            "Type",
+                            "Account",
+                            "Amount"});
+                table23.AddRow(new string[] {
+                            "Debit",
+                            "Bank",
+                            "4000"});
+                table23.AddRow(new string[] {
+                            "Credit",
+                            "Sales Revenue",
+                            "4000"});
+#line 102
+    await testRunner.AndAsync("the following entries for transaction on date \"2024-01-01\"", ((string)(null)), table23, "And ");
+#line hidden
+                Reqnroll.Table table24 = new Reqnroll.Table(new string[] {
+                            "Type",
+                            "Account",
+                            "Amount"});
+                table24.AddRow(new string[] {
+                            "Debit",
+                            "Office Supplies",
+                            "300"});
+                table24.AddRow(new string[] {
+                            "Credit",
+                            "Accounts Payable",
+                            "300"});
+#line 106
+    await testRunner.AndAsync("the following entries for transaction on date \"2024-01-02\"", ((string)(null)), table24, "And ");
+#line hidden
+                Reqnroll.Table table25 = new Reqnroll.Table(new string[] {
+                            "Type",
+                            "Account",
+                            "Amount"});
+                table25.AddRow(new string[] {
+                            "Debit",
+                            "Rent Expense",
+                            "1200"});
+                table25.AddRow(new string[] {
+                            "Credit",
+                            "Cash",
+                            "1200"});
+#line 110
+    await testRunner.AndAsync("the following entries for transaction on date \"2024-01-03\"", ((string)(null)), table25, "And ");
+#line hidden
+                Reqnroll.Table table26 = new Reqnroll.Table(new string[] {
+                            "Type",
+                            "Account",
+                            "Amount"});
+                table26.AddRow(new string[] {
+                            "Debit",
+                            "Retained Earnings",
+                            "500"});
+                table26.AddRow(new string[] {
+                            "Credit",
+                            "Dividends",
+                            "500"});
+#line 114
+    await testRunner.AndAsync("the following entries for transaction on date \"2024-01-04\"", ((string)(null)), table26, "And ");
+#line hidden
+#line 118
+    await testRunner.WhenAsync("the fiscal year is closed", ((string)(null)), ((Reqnroll.Table)(null)), "When ");
+#line hidden
+#line 119
+    await testRunner.ThenAsync("the journal should have a transaction with date \"current date\", description \"Clos" +
+                        "e Fiscal Year\", an entry with debit account \"Income Summary\", and an entry with " +
+                        "credit account \"Retained Earnings\", and amount 2500", ((string)(null)), ((Reqnroll.Table)(null)), "Then ");
+#line hidden
+#line 120
+    await testRunner.AndAsync("the ledger should reset all revenue and expense accounts to zero", ((string)(null)), ((Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 121
+    await testRunner.AndAsync("the ledger should update the \"Owner\'s Equity\" account with a credit of 2500", ((string)(null)), ((Reqnroll.Table)(null)), "And ");
+#line hidden
+            }
+            await this.ScenarioCleanupAsync();
+        }
+        
+        [Xunit.SkippableFactAttribute(DisplayName="Closing the fiscal year with zero balance")]
+        [Xunit.TraitAttribute("FeatureTitle", "Close Fiscal Year")]
+        [Xunit.TraitAttribute("Description", "Closing the fiscal year with zero balance")]
+        [Xunit.TraitAttribute("Category", "tag1")]
+        public async System.Threading.Tasks.Task ClosingTheFiscalYearWithZeroBalance()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "tag1"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            Reqnroll.ScenarioInfo scenarioInfo = new Reqnroll.ScenarioInfo("Closing the fiscal year with zero balance", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 124
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                await this.ScenarioStartAsync();
+                Reqnroll.Table table27 = new Reqnroll.Table(new string[] {
+                            "Date",
+                            "Description"});
+                table27.AddRow(new string[] {
+                            "2024-01-01",
+                            "Revenue from Sales"});
+                table27.AddRow(new string[] {
+                            "2024-01-02",
+                            "Office Supplies Expense"});
+                table27.AddRow(new string[] {
+                            "2024-01-03",
+                            "Rent Expense"});
+#line 125
+    await testRunner.GivenAsync("the following transactions", ((string)(null)), table27, "Given ");
+#line hidden
+                Reqnroll.Table table28 = new Reqnroll.Table(new string[] {
+                            "Type",
+                            "Account",
+                            "Amount"});
+                table28.AddRow(new string[] {
+                            "Debit",
+                            "Bank",
+                            "1000"});
+                table28.AddRow(new string[] {
+                            "Credit",
+                            "Sales Revenue",
+                            "1000"});
+#line 130
+    await testRunner.AndAsync("the following entries for transaction on date \"2024-01-01\"", ((string)(null)), table28, "And ");
+#line hidden
+                Reqnroll.Table table29 = new Reqnroll.Table(new string[] {
+                            "Type",
+                            "Account",
+                            "Amount"});
+                table29.AddRow(new string[] {
+                            "Debit",
+                            "Office Supplies",
+                            "500"});
+                table29.AddRow(new string[] {
+                            "Credit",
+                            "Accounts Payable",
+                            "500"});
+#line 134
+    await testRunner.AndAsync("the following entries for transaction on date \"2024-01-02\"", ((string)(null)), table29, "And ");
+#line hidden
+                Reqnroll.Table table30 = new Reqnroll.Table(new string[] {
+                            "Type",
+                            "Account",
+                            "Amount"});
+                table30.AddRow(new string[] {
+                            "Debit",
+                            "Rent Expense",
+                            "500"});
+                table30.AddRow(new string[] {
+                            "Credit",
+                            "Cash",
+                            "500"});
+#line 138
+    await testRunner.AndAsync("the following entries for transaction on date \"2024-01-03\"", ((string)(null)), table30, "And ");
+#line hidden
+#line 142
+    await testRunner.WhenAsync("the fiscal year is closed", ((string)(null)), ((Reqnroll.Table)(null)), "When ");
+#line hidden
+#line 143
+    await testRunner.ThenAsync("the journal should have a transaction with date \"current date\", description \"Clos" +
+                        "e Fiscal Year\", an entry with debit account \"Income Summary\", and an entry with " +
+                        "credit account \"Retained Earnings\", and amount 0", ((string)(null)), ((Reqnroll.Table)(null)), "Then ");
+#line hidden
+#line 144
+    await testRunner.AndAsync("the ledger should reset all revenue and expense accounts to zero", ((string)(null)), ((Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 145
+    await testRunner.AndAsync("the ledger should update the \"Owner\'s Equity\" account with a credit of 0", ((string)(null)), ((Reqnroll.Table)(null)), "And ");
+#line hidden
+            }
+            await this.ScenarioCleanupAsync();
+        }
+        
+        [Xunit.SkippableFactAttribute(DisplayName="Closing the fiscal year with zero balance and dividends declared")]
+        [Xunit.TraitAttribute("FeatureTitle", "Close Fiscal Year")]
+        [Xunit.TraitAttribute("Description", "Closing the fiscal year with zero balance and dividends declared")]
+        [Xunit.TraitAttribute("Category", "tag1")]
+        public async System.Threading.Tasks.Task ClosingTheFiscalYearWithZeroBalanceAndDividendsDeclared()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "tag1"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            Reqnroll.ScenarioInfo scenarioInfo = new Reqnroll.ScenarioInfo("Closing the fiscal year with zero balance and dividends declared", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 148
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                await this.ScenarioStartAsync();
+                Reqnroll.Table table31 = new Reqnroll.Table(new string[] {
+                            "Date",
+                            "Description"});
+                table31.AddRow(new string[] {
+                            "2024-01-01",
+                            "Revenue from Sales"});
+                table31.AddRow(new string[] {
+                            "2024-01-02",
+                            "Office Supplies Expense"});
+                table31.AddRow(new string[] {
+                            "2024-01-03",
+                            "Rent Expense"});
+                table31.AddRow(new string[] {
+                            "2024-01-04",
+                            "Dividends Declared"});
+#line 149
+ await testRunner.GivenAsync("the following transactions", ((string)(null)), table31, "Given ");
+#line hidden
+                Reqnroll.Table table32 = new Reqnroll.Table(new string[] {
+                            "Type",
+                            "Account",
+                            "Amount"});
+                table32.AddRow(new string[] {
+                            "Debit",
+                            "Bank",
+                            "1000"});
+                table32.AddRow(new string[] {
+                            "Credit",
+                            "Sales Revenue",
+                            "1000"});
+#line 155
+ await testRunner.AndAsync("the following entries for transaction on date \"2024-01-01\"", ((string)(null)), table32, "And ");
+#line hidden
+                Reqnroll.Table table33 = new Reqnroll.Table(new string[] {
+                            "Type",
+                            "Account",
+                            "Amount"});
+                table33.AddRow(new string[] {
+                            "Debit",
+                            "Office Supplies",
+                            "500"});
+                table33.AddRow(new string[] {
+                            "Credit",
+                            "Accounts Payable",
+                            "500"});
+#line 159
+ await testRunner.AndAsync("the following entries for transaction on date \"2024-01-02\"", ((string)(null)), table33, "And ");
+#line hidden
+                Reqnroll.Table table34 = new Reqnroll.Table(new string[] {
+                            "Type",
+                            "Account",
+                            "Amount"});
+                table34.AddRow(new string[] {
+                            "Debit",
+                            "Rent Expense",
+                            "500"});
+                table34.AddRow(new string[] {
+                            "Credit",
+                            "Cash",
+                            "500"});
+#line 163
+ await testRunner.AndAsync("the following entries for transaction on date \"2024-01-03\"", ((string)(null)), table34, "And ");
+#line hidden
+                Reqnroll.Table table35 = new Reqnroll.Table(new string[] {
+                            "Type",
+                            "Account",
+                            "Amount"});
+                table35.AddRow(new string[] {
+                            "Debit",
+                            "Retained Earnings",
+                            "500"});
+                table35.AddRow(new string[] {
+                            "Credit",
+                            "Dividends",
+                            "500"});
+#line 167
+ await testRunner.AndAsync("the following entries for transaction on date \"2024-01-04\"", ((string)(null)), table35, "And ");
+#line hidden
+#line 171
+ await testRunner.WhenAsync("the fiscal year is closed", ((string)(null)), ((Reqnroll.Table)(null)), "When ");
+#line hidden
+#line 172
+ await testRunner.ThenAsync("the journal should have a transaction with date \"current date\", description \"Clos" +
+                        "e Fiscal Year\", an entry with debit account \"Income Summary\", and an entry with " +
+                        "credit account \"Retained Earnings\", and amount 0", ((string)(null)), ((Reqnroll.Table)(null)), "Then ");
+#line hidden
+#line 173
+ await testRunner.AndAsync("the ledger should reset all revenue and expense accounts to zero", ((string)(null)), ((Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 174
+ await testRunner.AndAsync("the ledger should update the \"Owner\'s Equity\" account with a credit of 0", ((string)(null)), ((Reqnroll.Table)(null)), "And ");
+#line hidden
+            }
+            await this.ScenarioCleanupAsync();
+        }
+        
+        [Xunit.SkippableFactAttribute(DisplayName="Closing the fiscal year with prepaid expenses")]
+        [Xunit.TraitAttribute("FeatureTitle", "Close Fiscal Year")]
+        [Xunit.TraitAttribute("Description", "Closing the fiscal year with prepaid expenses")]
+        [Xunit.TraitAttribute("Category", "tag1")]
+        public async System.Threading.Tasks.Task ClosingTheFiscalYearWithPrepaidExpenses()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "tag1"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            Reqnroll.ScenarioInfo scenarioInfo = new Reqnroll.ScenarioInfo("Closing the fiscal year with prepaid expenses", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 177
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                await this.ScenarioStartAsync();
+                Reqnroll.Table table36 = new Reqnroll.Table(new string[] {
+                            "Date",
+                            "Description"});
+                table36.AddRow(new string[] {
+                            "2024-01-01",
+                            "Revenue from Sales"});
+                table36.AddRow(new string[] {
+                            "2024-01-02",
+                            "Prepaid Insurance"});
+                table36.AddRow(new string[] {
+                            "2024-01-03",
+                            "Rent Expense"});
+#line 178
+    await testRunner.GivenAsync("the following transactions", ((string)(null)), table36, "Given ");
+#line hidden
+                Reqnroll.Table table37 = new Reqnroll.Table(new string[] {
+                            "Type",
+                            "Account",
+                            "Amount"});
+                table37.AddRow(new string[] {
+                            "Debit",
+                            "Cash",
+                            "7000"});
+                table37.AddRow(new string[] {
+                            "Credit",
+                            "Sales Revenue",
+                            "7000"});
+#line 183
+    await testRunner.AndAsync("the following entries for transaction on date \"2024-01-01\"", ((string)(null)), table37, "And ");
+#line hidden
+                Reqnroll.Table table38 = new Reqnroll.Table(new string[] {
+                            "Type",
+                            "Account",
+                            "Amount"});
+                table38.AddRow(new string[] {
+                            "Debit",
+                            "Prepaid Insurance",
+                            "500"});
+                table38.AddRow(new string[] {
+                            "Credit",
+                            "Cash",
+                            "500"});
+#line 187
+    await testRunner.AndAsync("the following entries for transaction on date \"2024-01-02\"", ((string)(null)), table38, "And ");
+#line hidden
+                Reqnroll.Table table39 = new Reqnroll.Table(new string[] {
+                            "Type",
+                            "Account",
+                            "Amount"});
+                table39.AddRow(new string[] {
+                            "Debit",
+                            "Rent Expense",
+                            "1000"});
+                table39.AddRow(new string[] {
+                            "Credit",
+                            "Cash",
+                            "1000"});
+#line 191
+    await testRunner.AndAsync("the following entries for transaction on date \"2024-01-03\"", ((string)(null)), table39, "And ");
+#line hidden
+#line 195
+    await testRunner.WhenAsync("the fiscal year is closed", ((string)(null)), ((Reqnroll.Table)(null)), "When ");
+#line hidden
+#line 196
+    await testRunner.ThenAsync("the journal should have a transaction with date \"current date\", description \"Clos" +
+                        "e Fiscal Year\", an entry with debit account \"Income Summary\", and an entry with " +
+                        "credit account \"Retained Earnings\", and amount 5500", ((string)(null)), ((Reqnroll.Table)(null)), "Then ");
+#line hidden
+#line 197
+    await testRunner.AndAsync("the ledger should reset all revenue and expense accounts to zero", ((string)(null)), ((Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 198
+    await testRunner.AndAsync("the ledger should update the \"Owner\'s Equity\" account with a credit of 5500", ((string)(null)), ((Reqnroll.Table)(null)), "And ");
+#line hidden
+            }
+            await this.ScenarioCleanupAsync();
+        }
+        
+        [Xunit.SkippableFactAttribute(DisplayName="Closing the fiscal year with accrued expenses")]
+        [Xunit.TraitAttribute("FeatureTitle", "Close Fiscal Year")]
+        [Xunit.TraitAttribute("Description", "Closing the fiscal year with accrued expenses")]
+        [Xunit.TraitAttribute("Category", "tag1")]
+        public async System.Threading.Tasks.Task ClosingTheFiscalYearWithAccruedExpenses()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "tag1"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            Reqnroll.ScenarioInfo scenarioInfo = new Reqnroll.ScenarioInfo("Closing the fiscal year with accrued expenses", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 201
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                await this.ScenarioStartAsync();
+                Reqnroll.Table table40 = new Reqnroll.Table(new string[] {
+                            "Date",
+                            "Description"});
+                table40.AddRow(new string[] {
+                            "2024-01-01",
+                            "Revenue from Sales"});
+                table40.AddRow(new string[] {
+                            "2024-01-02",
+                            "Accrued Salaries"});
+                table40.AddRow(new string[] {
+                            "2024-01-03",
+                            "Rent Expense"});
+#line 202
+    await testRunner.GivenAsync("the following transactions", ((string)(null)), table40, "Given ");
+#line hidden
+                Reqnroll.Table table41 = new Reqnroll.Table(new string[] {
+                            "Type",
+                            "Account",
+                            "Amount"});
+                table41.AddRow(new string[] {
+                            "Debit",
+                            "Cash",
+                            "6000"});
+                table41.AddRow(new string[] {
+                            "Credit",
+                            "Sales Revenue",
+                            "6000"});
+#line 207
+    await testRunner.AndAsync("the following entries for transaction on date \"2024-01-01\"", ((string)(null)), table41, "And ");
+#line hidden
+                Reqnroll.Table table42 = new Reqnroll.Table(new string[] {
+                            "Type",
+                            "Account",
+                            "Amount"});
+                table42.AddRow(new string[] {
+                            "Debit",
+                            "Salaries Expense",
+                            "800"});
+                table42.AddRow(new string[] {
+                            "Credit",
+                            "Salaries Payable",
+                            "800"});
+#line 211
+    await testRunner.AndAsync("the following entries for transaction on date \"2024-01-02\"", ((string)(null)), table42, "And ");
+#line hidden
+                Reqnroll.Table table43 = new Reqnroll.Table(new string[] {
+                            "Type",
+                            "Account",
+                            "Amount"});
+                table43.AddRow(new string[] {
+                            "Debit",
+                            "Rent Expense",
+                            "1000"});
+                table43.AddRow(new string[] {
+                            "Credit",
+                            "Cash",
+                            "1000"});
+#line 215
+    await testRunner.AndAsync("the following entries for transaction on date \"2024-01-03\"", ((string)(null)), table43, "And ");
+#line hidden
+#line 219
+    await testRunner.WhenAsync("the fiscal year is closed", ((string)(null)), ((Reqnroll.Table)(null)), "When ");
+#line hidden
+#line 220
+    await testRunner.ThenAsync("the journal should have a transaction with date \"current date\", description \"Clos" +
+                        "e Fiscal Year\", an entry with debit account \"Income Summary\", and an entry with " +
+                        "credit account \"Retained Earnings\", and amount 4200", ((string)(null)), ((Reqnroll.Table)(null)), "Then ");
+#line hidden
+#line 221
+    await testRunner.AndAsync("the ledger should reset all revenue and expense accounts to zero", ((string)(null)), ((Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 222
+    await testRunner.AndAsync("the ledger should update the \"Owner\'s Equity\" account with a credit of 4200", ((string)(null)), ((Reqnroll.Table)(null)), "And ");
+#line hidden
+            }
+            await this.ScenarioCleanupAsync();
+        }
+        
+        [Xunit.SkippableFactAttribute(DisplayName="Closing the fiscal year with unearned revenue")]
+        [Xunit.TraitAttribute("FeatureTitle", "Close Fiscal Year")]
+        [Xunit.TraitAttribute("Description", "Closing the fiscal year with unearned revenue")]
+        [Xunit.TraitAttribute("Category", "tag1")]
+        public async System.Threading.Tasks.Task ClosingTheFiscalYearWithUnearnedRevenue()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "tag1"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            Reqnroll.ScenarioInfo scenarioInfo = new Reqnroll.ScenarioInfo("Closing the fiscal year with unearned revenue", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 225
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                await this.ScenarioStartAsync();
+                Reqnroll.Table table44 = new Reqnroll.Table(new string[] {
+                            "Date",
+                            "Description"});
+                table44.AddRow(new string[] {
+                            "2024-01-01",
+                            "Revenue from Sales"});
+                table44.AddRow(new string[] {
+                            "2024-01-02",
+                            "Unearned Revenue"});
+                table44.AddRow(new string[] {
+                            "2024-01-03",
+                            "Rent Expense"});
+#line 226
+    await testRunner.GivenAsync("the following transactions", ((string)(null)), table44, "Given ");
+#line hidden
+                Reqnroll.Table table45 = new Reqnroll.Table(new string[] {
+                            "Type",
+                            "Account",
+                            "Amount"});
+                table45.AddRow(new string[] {
+                            "Debit",
+                            "Cash",
+                            "4000"});
+                table45.AddRow(new string[] {
+                            "Credit",
+                            "Sales Revenue",
+                            "4000"});
+#line 231
+    await testRunner.AndAsync("the following entries for transaction on date \"2024-01-01\"", ((string)(null)), table45, "And ");
+#line hidden
+                Reqnroll.Table table46 = new Reqnroll.Table(new string[] {
+                            "Type",
+                            "Account",
+                            "Amount"});
+                table46.AddRow(new string[] {
+                            "Debit",
+                            "Cash",
+                            "1000"});
+                table46.AddRow(new string[] {
+                            "Credit",
+                            "Unearned Revenue",
+                            "1000"});
+#line 235
+    await testRunner.AndAsync("the following entries for transaction on date \"2024-01-02\"", ((string)(null)), table46, "And ");
+#line hidden
+                Reqnroll.Table table47 = new Reqnroll.Table(new string[] {
+                            "Type",
+                            "Account",
+                            "Amount"});
+                table47.AddRow(new string[] {
+                            "Debit",
+                            "Rent Expense",
+                            "1500"});
+                table47.AddRow(new string[] {
+                            "Credit",
+                            "Cash",
+                            "1500"});
+#line 239
+    await testRunner.AndAsync("the following entries for transaction on date \"2024-01-03\"", ((string)(null)), table47, "And ");
+#line hidden
+#line 243
+    await testRunner.WhenAsync("the fiscal year is closed", ((string)(null)), ((Reqnroll.Table)(null)), "When ");
+#line hidden
+#line 244
+    await testRunner.ThenAsync("the journal should have a transaction with date \"current date\", description \"Clos" +
+                        "e Fiscal Year\", an entry with debit account \"Income Summary\", and an entry with " +
+                        "credit account \"Retained Earnings\", and amount 2500", ((string)(null)), ((Reqnroll.Table)(null)), "Then ");
+#line hidden
+#line 245
+    await testRunner.AndAsync("the ledger should reset all revenue and expense accounts to zero", ((string)(null)), ((Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 246
+    await testRunner.AndAsync("the ledger should update the \"Owner\'s Equity\" account with a credit of 2500", ((string)(null)), ((Reqnroll.Table)(null)), "And ");
+#line hidden
+            }
+            await this.ScenarioCleanupAsync();
+        }
+        
         [System.CodeDom.Compiler.GeneratedCodeAttribute("Reqnroll", "1.0.0.0")]
         [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
         public class FixtureData : object, Xunit.IAsyncLifetime
