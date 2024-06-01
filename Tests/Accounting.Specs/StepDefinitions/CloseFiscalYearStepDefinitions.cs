@@ -2,17 +2,11 @@ using Accounting.Core;
 
 namespace Accounting.Specs.StepDefinitions
 {
-    [Binding]
-    public class CloseFiscalYearStepDefinitions
+    public partial class Steps
     {
-        private Journal? _journal;
-        private Ledger? _ledger;
-
         [Given("the following transactions")]
         public void GivenTheFollowingTransactions(DataTable transactions)
         {
-            _journal = Journal.Create();
-
             foreach (var row in transactions.Rows)
             {
                 var transactionDate = DateTimeOffset.Parse(row["Date"]);
@@ -20,7 +14,7 @@ namespace Accounting.Specs.StepDefinitions
 
                 var transaction = Transaction.Create(transactionDate, description);
 
-                _journal.AddTransaction(transaction);
+                _journal!.AddTransaction(transaction);
             }
         }
 
@@ -44,10 +38,8 @@ namespace Accounting.Specs.StepDefinitions
         [When("the fiscal year is closed")]
         public void WhenTheFiscalYearIsClosed()
         {
-            _ledger = Ledger.Create();
-            _ledger.Initialize(_journal!);
-
-            _ledger.CloseFiscalYear(_journal!);
+            _ledger!.Initialize(_journal!);
+            _ledger!.CloseFiscalYear(_journal!);
         }
 
         [Then("the journal should have an transaction with date {string}, description {string}, an entry with debit account {string}, and an entry with credit account {string}, and amount {double}")]
@@ -79,9 +71,6 @@ namespace Accounting.Specs.StepDefinitions
         [Then("the ledger should reset all revenue and expense accounts to zero")]
         public void ThenTheLedgerShouldResetAllRevenueAndExpenseAccountsToZero()
         {
-            var incomeSummaryLedgerAccount = _ledger!.Accounts.Single(x => x.Account == Account.ToAccount("Income Summary"));
-
-
             var revenueLedgerAccounts = _ledger!.Accounts.Where(x => x.Account.AccountType == AccountType.Revenue);
             foreach (var account in revenueLedgerAccounts)
                 account.Balance.Should().Be(0);
@@ -89,21 +78,6 @@ namespace Accounting.Specs.StepDefinitions
             var expenseLedgerAccounts = _ledger!.Accounts.Where(x => x.Account.AccountType == AccountType.Expense);
             foreach (var account in expenseLedgerAccounts)
                 account.Balance.Should().Be(0);
-        }
-
-        [Then("the ledger should update the {string} account with a credit of {string}")]
-        public void ThenTheLedgerShouldUpdateTheAccountWithACreditOf(string creditAccount, double amount)
-        {
-            if (_ledger == null)
-                _ledger = Ledger.Create();
-
-            var account = Account.ToAccount(creditAccount);
-
-            _ledger.AddCreditEntry(account, amount);
-
-            var ledgerAccount = _ledger.Accounts.Single(a => a.Account == account);
-            ledgerAccount.Balance.Should().Be(amount);
-            _ledger.Accounts.Should().Contain(ledgerAccount);
         }
     }
 }

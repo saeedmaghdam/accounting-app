@@ -60,16 +60,14 @@
 
             foreach (var account in Accounts.Where(x=> x.Account.AccountType == AccountType.Revenue))
             {
-                var amount = Math.Abs(account.Balance);
-                AddCreditEntry(incomeSummaryLedgerAccount.Account, amount);
-                AddDebitEntry(account.Account, amount);
+                AddDebitEntry(incomeSummaryLedgerAccount.Account, account.Balance);
+                AddCreditEntry(account.Account, account.Balance);
             }
 
             foreach (var account in Accounts.Where(x => x.Account.AccountType == AccountType.Expense))
             {
-                var amount = Math.Abs(account.Balance);
-                AddDebitEntry(incomeSummaryLedgerAccount.Account, amount);
-                AddCreditEntry(account.Account, amount);
+                AddDebitEntry(incomeSummaryLedgerAccount.Account, account.Balance);
+                AddCreditEntry(account.Account, account.Balance);
             }
 
             var incomeSummaryBalanceAmount = Math.Abs(incomeSummaryLedgerAccount.Balance);

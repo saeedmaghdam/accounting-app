@@ -2,12 +2,9 @@ using Accounting.Core;
 
 namespace Accounting.Specs.StepDefinitions
 {
-    [Binding]
-    public class AddTransactionsStepDefinitions
+    public partial class Steps
     {
-        private Journal? _journal;
         private Transaction? _transaction;
-        private Ledger? _ledger;
 
         [Given("a new transaction with date {string}, description {string}, debit account {string}, credit account {string}, and amount {double}")]
         public void GivenANewJournalEntryWithDateDescriptionDebitAccountCreditAccountAndAmount(DateTimeOffset transactionDate, string description, string debitAccount, string creditAccount, double amount)
@@ -25,7 +22,7 @@ namespace Accounting.Specs.StepDefinitions
 
             foreach (var row in entries.Rows)
             {
-                var account =Account.ToAccount(row["Account"]);
+                var account = Account.ToAccount(row["Account"]);
                 var amount = double.Parse(row["Amount"]);
 
                 if (row["Type"] == "Debit")
@@ -39,8 +36,7 @@ namespace Accounting.Specs.StepDefinitions
         [When("the transaction is recorded")]
         public void WhenTheTransactionIsRecorded()
         {
-            _journal = Journal.Create();
-            _journal.AddTransaction(_transaction!);
+            _journal!.AddTransaction(_transaction!);
         }
 
         [Then("the journal should have a transaction with date {string}, description {string}, and the following entries")]
@@ -53,7 +49,7 @@ namespace Accounting.Specs.StepDefinitions
 
             foreach (var row in entries.Rows)
             {
-                var account =Account.ToAccount(row["Account"]);
+                var account = Account.ToAccount(row["Account"]);
                 var amount = double.Parse(row["Amount"]);
 
                 if (row["Type"] == "Debit")
@@ -67,7 +63,7 @@ namespace Accounting.Specs.StepDefinitions
         [Then("the journal should have a transaction with date {string}, description {string}, and two entries, debit account {string} with amount {double}, credit account {string} with amount {double}")]
         public void ThenTheJournalShouldHaveAnEntryWithDateDescriptionDebitAccountCreditAccountAndAmount(DateTimeOffset transactionDate, string description, string debitAccount, double debitAmount, string creditAccount, double creditAmount)
         {
-            var account =Account.ToAccount(debitAccount);
+            var account = Account.ToAccount(debitAccount);
             var transaction = _journal!.Transactions[0];
 
             transaction.Date.Should().Be(transactionDate);
@@ -80,31 +76,25 @@ namespace Accounting.Specs.StepDefinitions
         [Then("the ledger should update the {string} account with a debit of {double}")]
         public void ThenTheLedgerShouldUpdateTheAccountWithADebitOf(string debitAccount, double amount)
         {
-            if (_ledger == null)
-                _ledger = Ledger.Create();
+            var account = Account.ToAccount(debitAccount);
 
-            var account =Account.ToAccount(debitAccount);
+            _ledger!.AddDebitEntry(account, amount);
 
-            _ledger.AddDebitEntry(account, amount);
-
-            var ledgerAccount = _ledger.Accounts.Single(a => a.Account == account);
+            var ledgerAccount = _ledger!.Accounts.Single(a => a.Account == account);
             ledgerAccount.Balance.Should().Be(amount);
-            _ledger.Accounts.Should().Contain(ledgerAccount);
+            _ledger!.Accounts.Should().Contain(ledgerAccount);
         }
 
         [Then("the ledger should update the {string} account with a credit of {double}")]
         public void ThenTheLedgerShouldUpdateTheAccountWithACreditOf(string creditAccount, double amount)
         {
-            if (_ledger == null)
-                _ledger = Ledger.Create();
+            var account = Account.ToAccount(creditAccount);
 
-            var account =Account.ToAccount(creditAccount);
+            _ledger!.AddCreditEntry(account, amount);
 
-            _ledger.AddCreditEntry(account, amount);
-
-            var ledgerAccount = _ledger.Accounts.Single(a => a.Account == account);
+            var ledgerAccount = _ledger!.Accounts.Single(a => a.Account == account);
             ledgerAccount.Balance.Should().Be(-amount);
-            _ledger.Accounts.Should().Contain(ledgerAccount);
+            _ledger!.Accounts.Should().Contain(ledgerAccount);
         }
     }
 }
