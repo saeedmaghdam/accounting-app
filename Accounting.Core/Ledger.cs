@@ -58,16 +58,40 @@
                 Accounts.Add(incomeSummaryLedgerAccount);
             }
 
-            foreach (var account in Accounts.Where(x=> x.Account.AccountType == AccountType.Revenue))
+            foreach (var account in Accounts.Where(x => x.Account.AccountType == AccountType.Revenue))
             {
-                AddDebitEntry(incomeSummaryLedgerAccount.Account, account.Balance);
-                AddCreditEntry(account.Account, account.Balance);
+                if (account.Balance == 0)
+                    continue;
+
+                var amount = Math.Abs(account.Balance);
+                if (account.Balance > 0)
+                {
+                    AddDebitEntry(incomeSummaryLedgerAccount.Account, amount);
+                    AddCreditEntry(account.Account, amount);
+                }
+                else
+                {
+                    AddCreditEntry(incomeSummaryLedgerAccount.Account, amount);
+                    AddDebitEntry(account.Account, amount);
+                }
             }
 
             foreach (var account in Accounts.Where(x => x.Account.AccountType == AccountType.Expense))
             {
-                AddDebitEntry(incomeSummaryLedgerAccount.Account, account.Balance);
-                AddCreditEntry(account.Account, account.Balance);
+                if (account.Balance == 0)
+                    continue;
+
+                var amount = Math.Abs(account.Balance);
+                if (account.Balance > 0)
+                {
+                    AddDebitEntry(incomeSummaryLedgerAccount.Account, amount);
+                    AddCreditEntry(account.Account, amount);
+                }
+                else
+                {
+                    AddCreditEntry(incomeSummaryLedgerAccount.Account, amount);
+                    AddDebitEntry(account.Account, amount);
+                }
             }
 
             var incomeSummaryBalanceAmount = Math.Abs(incomeSummaryLedgerAccount.Balance);
@@ -81,8 +105,17 @@
             }
 
             var closeFiscalYearTransaction = Transaction.Create(DateTimeOffset.UtcNow, "Close Fiscal Year");
-            closeFiscalYearTransaction.AddDebitEntry(DebitEntry.Create(incomeSummaryLedgerAccount.Account, incomeSummaryBalanceAmount));
-            closeFiscalYearTransaction.AddCreditEntry(CreditEntry.Create(retainedEarningsLedgerAccount.Account, incomeSummaryBalanceAmount));
+
+            if (incomeSummaryLedgerAccount.Balance > 0)
+            {
+                closeFiscalYearTransaction.AddCreditEntry(CreditEntry.Create(incomeSummaryLedgerAccount.Account, incomeSummaryBalanceAmount));
+                closeFiscalYearTransaction.AddDebitEntry(DebitEntry.Create(retainedEarningsLedgerAccount.Account, incomeSummaryBalanceAmount));
+            }
+            else
+            {
+                closeFiscalYearTransaction.AddDebitEntry(DebitEntry.Create(incomeSummaryLedgerAccount.Account, incomeSummaryBalanceAmount));
+                closeFiscalYearTransaction.AddCreditEntry(CreditEntry.Create(retainedEarningsLedgerAccount.Account, incomeSummaryBalanceAmount));
+            }
             journal.AddTransaction(closeFiscalYearTransaction);
         }
 
