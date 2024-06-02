@@ -106,50 +106,50 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 await this.ScenarioStartAsync();
-                Reqnroll.Table table49 = new Reqnroll.Table(new string[] {
+                Reqnroll.Table table57 = new Reqnroll.Table(new string[] {
                             "date",
                             "description",
                             "debit account",
                             "credit account",
                             "amount"});
-                table49.AddRow(new string[] {
+                table57.AddRow(new string[] {
                             "2024-01-01",
                             "Investment by Owner",
                             "Cash",
                             "Owner\'s Equity",
                             "1000"});
-                table49.AddRow(new string[] {
+                table57.AddRow(new string[] {
                             "2024-01-02",
                             "Purchase office supplies",
                             "Office Supplies",
                             "Accounts Payable",
                             "200"});
 #line 7
-    await testRunner.GivenAsync("multiple journal entries recorded", ((string)(null)), table49, "Given ");
+    await testRunner.GivenAsync("multiple journal entries recorded", ((string)(null)), table57, "Given ");
 #line hidden
 #line 11
     await testRunner.WhenAsync("I view the journal", ((string)(null)), ((Reqnroll.Table)(null)), "When ");
 #line hidden
-                Reqnroll.Table table50 = new Reqnroll.Table(new string[] {
+                Reqnroll.Table table58 = new Reqnroll.Table(new string[] {
                             "date",
                             "description",
                             "debit account",
                             "credit account",
                             "amount"});
-                table50.AddRow(new string[] {
+                table58.AddRow(new string[] {
                             "2024-01-01",
                             "Investment by Owner",
                             "Cash",
                             "Owner\'s Equity",
                             "1000"});
-                table50.AddRow(new string[] {
+                table58.AddRow(new string[] {
                             "2024-01-02",
                             "Purchase office supplies",
                             "Office Supplies",
                             "Accounts Payable",
                             "200"});
 #line 12
-    await testRunner.ThenAsync("I should see all the journal entries", ((string)(null)), table50, "Then ");
+    await testRunner.ThenAsync("I should see all the journal entries", ((string)(null)), table58, "Then ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();

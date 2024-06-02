@@ -26,7 +26,7 @@ Scenario: Closing the fiscal year
     When the fiscal year is closed
     Then the journal should have an transaction with date "current date", description "Close Fiscal Year", an entry with debit account "Income Summary", and an entry with credit account "Retained Earnings", and amount 3800
     And the ledger should reset all revenue and expense accounts to zero
-    And the ledger should update the "Owner's Equity" account with a credit of 3800
+    And the ledger should update the "Retained Earnings" account with a credit of 3800
 
 @tag1
 Scenario: Closing the fiscal year with net income
@@ -54,13 +54,13 @@ Scenario: Closing the fiscal year with net income
       | Debit  | Cash            | 3000   |
       | Credit | Service Revenue | 3000   |
     And the following entries for transaction on date "2024-01-05"
-      | Type   | Account         | Amount |
-      | Debit  | Utilities Expense| 150   |
-      | Credit | Accounts Payable | 150   |
+      | Type   | Account            | Amount |
+      | Debit  | Utilities Expense  | 150    |
+      | Credit | Accounts Payable   | 150    |
     When the fiscal year is closed
     Then the journal should have a transaction with date "current date", description "Close Fiscal Year", an entry with debit account "Income Summary", and an entry with credit account "Retained Earnings", and amount 6650
     And the ledger should reset all revenue and expense accounts to zero
-    And the ledger should update the "Owner's Equity" account with a credit of 6650
+    And the ledger should update the "Retained Earnings" account with a credit of 6650
 
 @tag1
 Scenario: Closing the fiscal year with net loss
@@ -83,13 +83,13 @@ Scenario: Closing the fiscal year with net loss
       | Debit  | Rent Expense    | 1500   |
       | Credit | Cash            | 1500   |
     And the following entries for transaction on date "2024-01-04"
-      | Type   | Account         | Amount |
-      | Debit  | Utilities Expense| 300   |
-      | Credit | Accounts Payable | 300   |
+      | Type   | Account            | Amount |
+      | Debit  | Utilities Expense  | 300    |
+      | Credit | Accounts Payable   | 300    |
     When the fiscal year is closed
     Then the journal should have a transaction with date "current date", description "Close Fiscal Year", an entry with debit account "Retained Earnings", and an entry with credit account "Income Summary", and amount 300
     And the ledger should reset all revenue and expense accounts to zero
-    And the ledger should update the "Owner's Equity" account with a debit of 300
+    And the ledger should update the "Retained Earnings" account with a debit of 300
 
 @tag1
 Scenario: Closing the fiscal year with dividends declared
@@ -112,13 +112,13 @@ Scenario: Closing the fiscal year with dividends declared
       | Debit  | Rent Expense    | 1200   |
       | Credit | Cash            | 1200   |
     And the following entries for transaction on date "2024-01-04"
-      | Type   | Account         | Amount |
-      | Debit  | Retained Earnings | 500   |
-      | Credit | Dividends       | 500    |
+      | Type   | Account            | Amount |
+      | Debit  | Retained Earnings  | 500    |
+      | Credit | Dividends          | 500    |
     When the fiscal year is closed
     Then the journal should have a transaction with date "current date", description "Close Fiscal Year", an entry with debit account "Income Summary", and an entry with credit account "Retained Earnings", and amount 2500
     And the ledger should reset all revenue and expense accounts to zero
-    And the ledger should update the "Owner's Equity" account with a credit of 2500
+    And the ledger should update the "Retained Earnings" account with a credit of 2000
 
 @tag1
 Scenario: Closing the fiscal year with zero balance
@@ -142,7 +142,7 @@ Scenario: Closing the fiscal year with zero balance
     When the fiscal year is closed
     Then the journal should have a transaction with date "current date", description "Close Fiscal Year", an entry with debit account "Income Summary", and an entry with credit account "Retained Earnings", and amount 0
     And the ledger should reset all revenue and expense accounts to zero
-    And the ledger should update the "Owner's Equity" account with a credit of 0
+    And the ledger should update the "Retained Earnings" account with a credit of 0
 
 @tag1
 Scenario: Closing the fiscal year with zero balance and dividends declared
@@ -165,13 +165,13 @@ Scenario: Closing the fiscal year with zero balance and dividends declared
 	  | Debit  | Rent Expense    | 500    |
 	  | Credit | Cash            | 500    |
 	And the following entries for transaction on date "2024-01-04"
-	  | Type   | Account         | Amount |
-	  | Debit  | Retained Earnings | 500   |
-	  | Credit | Dividends       | 500    |
+	  | Type   | Account            | Amount |
+	  | Debit  | Retained Earnings  | 500    |
+	  | Credit | Dividends          | 500    |
 	When the fiscal year is closed
 	Then the journal should have a transaction with date "current date", description "Close Fiscal Year", an entry with debit account "Income Summary", and an entry with credit account "Retained Earnings", and amount 0
 	And the ledger should reset all revenue and expense accounts to zero
-	And the ledger should update the "Owner's Equity" account with a credit of 0
+	And the ledger should update the "Retained Earnings" account with a credit of -500
 
 @tag1
 Scenario: Closing the fiscal year with prepaid expenses
@@ -185,17 +185,17 @@ Scenario: Closing the fiscal year with prepaid expenses
       | Debit  | Cash            | 7000   |
       | Credit | Sales Revenue   | 7000   |
     And the following entries for transaction on date "2024-01-02"
-      | Type   | Account         | Amount |
-      | Debit  | Prepaid Insurance| 500   |
-      | Credit | Cash            | 500    |
+      | Type   | Account            | Amount |
+      | Debit  | Prepaid Insurance  | 500    |
+      | Credit | Cash               | 500    |
     And the following entries for transaction on date "2024-01-03"
       | Type   | Account         | Amount |
       | Debit  | Rent Expense    | 1000   |
       | Credit | Cash            | 1000   |
     When the fiscal year is closed
-    Then the journal should have a transaction with date "current date", description "Close Fiscal Year", an entry with debit account "Income Summary", and an entry with credit account "Retained Earnings", and amount 5500
+    Then the journal should have a transaction with date "current date", description "Close Fiscal Year", an entry with debit account "Income Summary", and an entry with credit account "Retained Earnings", and amount 6000
     And the ledger should reset all revenue and expense accounts to zero
-    And the ledger should update the "Owner's Equity" account with a credit of 5500
+    And the ledger should update the "Retained Earnings" account with a credit of 6000
 
 @tag1
 Scenario: Closing the fiscal year with accrued expenses
@@ -219,7 +219,7 @@ Scenario: Closing the fiscal year with accrued expenses
     When the fiscal year is closed
     Then the journal should have a transaction with date "current date", description "Close Fiscal Year", an entry with debit account "Income Summary", and an entry with credit account "Retained Earnings", and amount 4200
     And the ledger should reset all revenue and expense accounts to zero
-    And the ledger should update the "Owner's Equity" account with a credit of 4200
+    And the ledger should update the "Retained Earnings" account with a credit of 4200
 
 @tag1
 Scenario: Closing the fiscal year with unearned revenue
@@ -243,4 +243,4 @@ Scenario: Closing the fiscal year with unearned revenue
     When the fiscal year is closed
     Then the journal should have a transaction with date "current date", description "Close Fiscal Year", an entry with debit account "Income Summary", and an entry with credit account "Retained Earnings", and amount 2500
     And the ledger should reset all revenue and expense accounts to zero
-    And the ledger should update the "Owner's Equity" account with a credit of 2500
+    And the ledger should update the "Retained Earnings" account with a credit of 2500

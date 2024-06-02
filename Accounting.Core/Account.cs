@@ -46,6 +46,7 @@ namespace Accounting.Core
                 "Service Revenue" => Account.Create($"40001:{name}"),
                 "Rent Revenue" => Account.Create($"40002:{name}"),
                 "Sales Revenue" => Account.Create($"40003:{name}"),
+                "Deferred Revenue" => Account.Create($"40004:{name}"),
                 "Supplies Expense" => Account.Create($"50001:{name}"),
                 "Depreciation Expense" => Account.Create($"50002:{name}"),
                 "Insurance Expense" => Account.Create($"50003:{name}"),
@@ -55,7 +56,17 @@ namespace Accounting.Core
                 "Utilities Expense" => Account.Create($"50007:{name}"),
                 "Miscellaneous Expense" => Account.Create($"50008:{name}"),
                 "Office Supplies" => Account.Create($"50009:{name}"),
-                _ => throw new ArgumentException("Invalid account name")
+                "Telephone Expense" => Account.Create($"50010:{name}"),
+                "Advertising Expense" => Account.Create($"50011:{name}"),
+                "Bank Fees" => Account.Create($"50012:{name}"),
+                "Delivery Expense" => Account.Create($"50013:{name}"),
+                "Gas and Fuel" => Account.Create($"50014:{name}"),
+                "Maintenance Expense" => Account.Create($"50015:{name}"),
+                "Travel Expense" => Account.Create($"50016:{name}"),
+                "Meals and Entertainment" => Account.Create($"50017:{name}"),
+                "Postage Expense" => Account.Create($"50018:{name}"),
+                "Training Expense" => Account.Create($"50019:{name}"),
+                _ => throw new ArgumentException($"Invalid account name {name}")
             };
         }
 

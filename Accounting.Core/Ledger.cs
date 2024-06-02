@@ -110,11 +110,17 @@
             {
                 closeFiscalYearTransaction.AddCreditEntry(CreditEntry.Create(incomeSummaryLedgerAccount.Account, incomeSummaryBalanceAmount));
                 closeFiscalYearTransaction.AddDebitEntry(DebitEntry.Create(retainedEarningsLedgerAccount.Account, incomeSummaryBalanceAmount));
+
+                AddDebitEntry(retainedEarningsLedgerAccount.Account, incomeSummaryBalanceAmount);
+                AddCreditEntry(incomeSummaryLedgerAccount.Account, incomeSummaryBalanceAmount);
             }
             else
             {
                 closeFiscalYearTransaction.AddDebitEntry(DebitEntry.Create(incomeSummaryLedgerAccount.Account, incomeSummaryBalanceAmount));
                 closeFiscalYearTransaction.AddCreditEntry(CreditEntry.Create(retainedEarningsLedgerAccount.Account, incomeSummaryBalanceAmount));
+
+                AddCreditEntry(retainedEarningsLedgerAccount.Account, incomeSummaryBalanceAmount);
+                AddDebitEntry(incomeSummaryLedgerAccount.Account, incomeSummaryBalanceAmount);
             }
             journal.AddTransaction(closeFiscalYearTransaction);
         }

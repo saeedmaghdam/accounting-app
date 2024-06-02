@@ -301,6 +301,277 @@ this.ScenarioInitialize(scenarioInfo);
             await this.ScenarioCleanupAsync();
         }
         
+        [Xunit.SkippableFactAttribute(DisplayName="Adding a transaction with multiple debit entries and one credit entry")]
+        [Xunit.TraitAttribute("FeatureTitle", "Add Transactions")]
+        [Xunit.TraitAttribute("Description", "Adding a transaction with multiple debit entries and one credit entry")]
+        [Xunit.TraitAttribute("Category", "tag1")]
+        public async System.Threading.Tasks.Task AddingATransactionWithMultipleDebitEntriesAndOneCreditEntry()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "tag1"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            Reqnroll.ScenarioInfo scenarioInfo = new Reqnroll.ScenarioInfo("Adding a transaction with multiple debit entries and one credit entry", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 53
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                await this.ScenarioStartAsync();
+                Reqnroll.Table table7 = new Reqnroll.Table(new string[] {
+                            "Type",
+                            "Account",
+                            "Amount"});
+                table7.AddRow(new string[] {
+                            "Debit",
+                            "Utilities Expense",
+                            "400"});
+                table7.AddRow(new string[] {
+                            "Debit",
+                            "Bank Fees",
+                            "50"});
+                table7.AddRow(new string[] {
+                            "Credit",
+                            "Cash",
+                            "450"});
+#line 54
+    await testRunner.GivenAsync("a new transaction with date \"2024-01-04\", description \"Utility Bill Payment\", and" +
+                        " the following entries", ((string)(null)), table7, "Given ");
+#line hidden
+#line 59
+    await testRunner.WhenAsync("the transaction is recorded", ((string)(null)), ((Reqnroll.Table)(null)), "When ");
+#line hidden
+                Reqnroll.Table table8 = new Reqnroll.Table(new string[] {
+                            "Type",
+                            "Account",
+                            "Amount"});
+                table8.AddRow(new string[] {
+                            "Debit",
+                            "Utilities Expense",
+                            "400"});
+                table8.AddRow(new string[] {
+                            "Debit",
+                            "Bank Fees",
+                            "50"});
+                table8.AddRow(new string[] {
+                            "Credit",
+                            "Cash",
+                            "450"});
+#line 60
+    await testRunner.ThenAsync("the journal should have a transaction with date \"2024-01-04\", description \"Utilit" +
+                        "y Bill Payment\", and the following entries", ((string)(null)), table8, "Then ");
+#line hidden
+#line 65
+    await testRunner.AndAsync("the ledger should update the \"Utilities Expense\" account with a debit of 400", ((string)(null)), ((Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 66
+    await testRunner.AndAsync("the ledger should update the \"Bank Fees\" account with a debit of 50", ((string)(null)), ((Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 67
+    await testRunner.AndAsync("the ledger should update the \"Cash\" account with a credit of 450", ((string)(null)), ((Reqnroll.Table)(null)), "And ");
+#line hidden
+            }
+            await this.ScenarioCleanupAsync();
+        }
+        
+        [Xunit.SkippableFactAttribute(DisplayName="Adding a transaction with prepayment")]
+        [Xunit.TraitAttribute("FeatureTitle", "Add Transactions")]
+        [Xunit.TraitAttribute("Description", "Adding a transaction with prepayment")]
+        [Xunit.TraitAttribute("Category", "tag1")]
+        public async System.Threading.Tasks.Task AddingATransactionWithPrepayment()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "tag1"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            Reqnroll.ScenarioInfo scenarioInfo = new Reqnroll.ScenarioInfo("Adding a transaction with prepayment", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 71
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                await this.ScenarioStartAsync();
+                Reqnroll.Table table9 = new Reqnroll.Table(new string[] {
+                            "Type",
+                            "Account",
+                            "Amount"});
+                table9.AddRow(new string[] {
+                            "Debit",
+                            "Prepaid Insurance",
+                            "600"});
+                table9.AddRow(new string[] {
+                            "Credit",
+                            "Cash",
+                            "600"});
+#line 72
+    await testRunner.GivenAsync("a new transaction with date \"2024-01-05\", description \"Prepaid Insurance\", and th" +
+                        "e following entries", ((string)(null)), table9, "Given ");
+#line hidden
+#line 76
+    await testRunner.WhenAsync("the transaction is recorded", ((string)(null)), ((Reqnroll.Table)(null)), "When ");
+#line hidden
+                Reqnroll.Table table10 = new Reqnroll.Table(new string[] {
+                            "Type",
+                            "Account",
+                            "Amount"});
+                table10.AddRow(new string[] {
+                            "Debit",
+                            "Prepaid Insurance",
+                            "600"});
+                table10.AddRow(new string[] {
+                            "Credit",
+                            "Cash",
+                            "600"});
+#line 77
+    await testRunner.ThenAsync("the journal should have a transaction with date \"2024-01-05\", description \"Prepai" +
+                        "d Insurance\", and the following entries", ((string)(null)), table10, "Then ");
+#line hidden
+#line 81
+    await testRunner.AndAsync("the ledger should update the \"Prepaid Insurance\" account with a debit of 600", ((string)(null)), ((Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 82
+    await testRunner.AndAsync("the ledger should update the \"Cash\" account with a credit of 600", ((string)(null)), ((Reqnroll.Table)(null)), "And ");
+#line hidden
+            }
+            await this.ScenarioCleanupAsync();
+        }
+        
+        [Xunit.SkippableFactAttribute(DisplayName="Adding a transaction with accrued expense")]
+        [Xunit.TraitAttribute("FeatureTitle", "Add Transactions")]
+        [Xunit.TraitAttribute("Description", "Adding a transaction with accrued expense")]
+        [Xunit.TraitAttribute("Category", "tag1")]
+        public async System.Threading.Tasks.Task AddingATransactionWithAccruedExpense()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "tag1"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            Reqnroll.ScenarioInfo scenarioInfo = new Reqnroll.ScenarioInfo("Adding a transaction with accrued expense", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 85
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                await this.ScenarioStartAsync();
+                Reqnroll.Table table11 = new Reqnroll.Table(new string[] {
+                            "Type",
+                            "Account",
+                            "Amount"});
+                table11.AddRow(new string[] {
+                            "Debit",
+                            "Salaries Expense",
+                            "1200"});
+                table11.AddRow(new string[] {
+                            "Credit",
+                            "Salaries Payable",
+                            "1200"});
+#line 86
+    await testRunner.GivenAsync("a new transaction with date \"2024-01-06\", description \"Accrued Salaries\", and the" +
+                        " following entries", ((string)(null)), table11, "Given ");
+#line hidden
+#line 90
+    await testRunner.WhenAsync("the transaction is recorded", ((string)(null)), ((Reqnroll.Table)(null)), "When ");
+#line hidden
+                Reqnroll.Table table12 = new Reqnroll.Table(new string[] {
+                            "Type",
+                            "Account",
+                            "Amount"});
+                table12.AddRow(new string[] {
+                            "Debit",
+                            "Salaries Expense",
+                            "1200"});
+                table12.AddRow(new string[] {
+                            "Credit",
+                            "Salaries Payable",
+                            "1200"});
+#line 91
+    await testRunner.ThenAsync("the journal should have a transaction with date \"2024-01-06\", description \"Accrue" +
+                        "d Salaries\", and the following entries", ((string)(null)), table12, "Then ");
+#line hidden
+#line 95
+    await testRunner.AndAsync("the ledger should update the \"Salaries Expense\" account with a debit of 1200", ((string)(null)), ((Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 96
+    await testRunner.AndAsync("the ledger should update the \"Salaries Payable\" account with a credit of 1200", ((string)(null)), ((Reqnroll.Table)(null)), "And ");
+#line hidden
+            }
+            await this.ScenarioCleanupAsync();
+        }
+        
+        [Xunit.SkippableFactAttribute(DisplayName="Adding a transaction with deferred revenue")]
+        [Xunit.TraitAttribute("FeatureTitle", "Add Transactions")]
+        [Xunit.TraitAttribute("Description", "Adding a transaction with deferred revenue")]
+        [Xunit.TraitAttribute("Category", "tag1")]
+        public async System.Threading.Tasks.Task AddingATransactionWithDeferredRevenue()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "tag1"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            Reqnroll.ScenarioInfo scenarioInfo = new Reqnroll.ScenarioInfo("Adding a transaction with deferred revenue", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 99
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                await this.ScenarioStartAsync();
+                Reqnroll.Table table13 = new Reqnroll.Table(new string[] {
+                            "Type",
+                            "Account",
+                            "Amount"});
+                table13.AddRow(new string[] {
+                            "Debit",
+                            "Cash",
+                            "1500"});
+                table13.AddRow(new string[] {
+                            "Credit",
+                            "Deferred Revenue",
+                            "1500"});
+#line 100
+    await testRunner.GivenAsync("a new transaction with date \"2024-01-07\", description \"Deferred Revenue\", and the" +
+                        " following entries", ((string)(null)), table13, "Given ");
+#line hidden
+#line 104
+    await testRunner.WhenAsync("the transaction is recorded", ((string)(null)), ((Reqnroll.Table)(null)), "When ");
+#line hidden
+                Reqnroll.Table table14 = new Reqnroll.Table(new string[] {
+                            "Type",
+                            "Account",
+                            "Amount"});
+                table14.AddRow(new string[] {
+                            "Debit",
+                            "Cash",
+                            "1500"});
+                table14.AddRow(new string[] {
+                            "Credit",
+                            "Deferred Revenue",
+                            "1500"});
+#line 105
+    await testRunner.ThenAsync("the journal should have a transaction with date \"2024-01-07\", description \"Deferr" +
+                        "ed Revenue\", and the following entries", ((string)(null)), table14, "Then ");
+#line hidden
+#line 109
+    await testRunner.AndAsync("the ledger should update the \"Cash\" account with a debit of 1500", ((string)(null)), ((Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 110
+    await testRunner.AndAsync("the ledger should update the \"Deferred Revenue\" account with a credit of 1500", ((string)(null)), ((Reqnroll.Table)(null)), "And ");
+#line hidden
+            }
+            await this.ScenarioCleanupAsync();
+        }
+        
         [System.CodeDom.Compiler.GeneratedCodeAttribute("Reqnroll", "1.0.0.0")]
         [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
         public class FixtureData : object, Xunit.IAsyncLifetime

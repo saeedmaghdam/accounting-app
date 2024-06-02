@@ -106,57 +106,57 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 await this.ScenarioStartAsync();
-                Reqnroll.Table table51 = new Reqnroll.Table(new string[] {
+                Reqnroll.Table table59 = new Reqnroll.Table(new string[] {
                             "date",
                             "description",
                             "debit account",
                             "credit account",
                             "amount"});
-                table51.AddRow(new string[] {
+                table59.AddRow(new string[] {
                             "2024-01-01",
                             "Investment by Owner",
                             "Cash",
                             "Owner\'s Equity",
                             "1000"});
-                table51.AddRow(new string[] {
+                table59.AddRow(new string[] {
                             "2024-01-02",
                             "Purchase office supplies",
                             "Office Supplies",
                             "Accounts Payable",
                             "200"});
 #line 7
-    await testRunner.GivenAsync("multiple journal entries recorded", ((string)(null)), table51, "Given ");
+    await testRunner.GivenAsync("multiple journal entries recorded", ((string)(null)), table59, "Given ");
 #line hidden
 #line 11
     await testRunner.WhenAsync("I view the ledger", ((string)(null)), ((Reqnroll.Table)(null)), "When ");
 #line hidden
-                Reqnroll.Table table52 = new Reqnroll.Table(new string[] {
+                Reqnroll.Table table60 = new Reqnroll.Table(new string[] {
                             "account",
                             "debit",
                             "credit",
                             "balance"});
-                table52.AddRow(new string[] {
+                table60.AddRow(new string[] {
                             "Cash",
                             "1000",
                             "0",
                             "1000"});
-                table52.AddRow(new string[] {
+                table60.AddRow(new string[] {
                             "Owner\'s Equity",
                             "0",
                             "1000",
                             "1000"});
-                table52.AddRow(new string[] {
+                table60.AddRow(new string[] {
                             "Office Supplies",
                             "200",
                             "0",
                             "200"});
-                table52.AddRow(new string[] {
+                table60.AddRow(new string[] {
                             "Accounts Payable",
                             "0",
                             "200",
                             "200"});
 #line 12
-    await testRunner.ThenAsync("I should see the updated balances of the ledger accounts", ((string)(null)), table52, "Then ");
+    await testRunner.ThenAsync("I should see the updated balances of the ledger accounts", ((string)(null)), table60, "Then ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();
