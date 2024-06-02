@@ -1,5 +1,8 @@
-﻿namespace Accounting.Core
+﻿using System.Diagnostics;
+
+namespace Accounting.Core
 {
+    [DebuggerDisplay("{DebuggerName}")]
     public class Ledger
     {
         public List<LedgerAccount> Accounts { get; } = new();
@@ -125,9 +128,6 @@
             journal.AddTransaction(closeFiscalYearTransaction);
         }
 
-        public override string ToString()
-        {
-            return string.Join(Environment.NewLine, Accounts);
-        }
+        private string DebuggerName => $"Accounts: {Accounts.Count}";
     }
 }

@@ -1,5 +1,8 @@
-﻿namespace Accounting.Core
+﻿using System.Diagnostics;
+
+namespace Accounting.Core
 {
+    [DebuggerDisplay("{DebuggerName}")]
     public class LedgerAccount
     {
         public Account Account { get; }
@@ -30,6 +33,14 @@
         public override string ToString()
         {
             return $"{Account} {Balance}";
+        }
+
+        private string DebuggerName
+        {
+            get {
+                var balance = Balance > 0 ? "+" + Balance.ToString() : Balance.ToString();
+                return $"{Account.AccountType,-12}{Account.Name,-35}{balance}";
+            }
         }
     }
 }

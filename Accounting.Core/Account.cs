@@ -1,7 +1,9 @@
 ﻿using System.ComponentModel;
+using System.Diagnostics;
 
 namespace Accounting.Core
 {
+    [DebuggerDisplay("{DebuggerName}")]
     public record Account(string Name)
     {
         public bool IsTemp { get => AccountType == AccountType.Expense || AccountType == AccountType.Revenue; }
@@ -71,5 +73,7 @@ namespace Accounting.Core
         }
 
         public override string ToString() => Name;
+
+        private string DebuggerName => $"{AccountType, -12}{Name, 10}";
     }
 }
