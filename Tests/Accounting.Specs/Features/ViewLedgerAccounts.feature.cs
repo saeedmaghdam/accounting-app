@@ -107,56 +107,72 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 await this.ScenarioStartAsync();
                 Reqnroll.Table table61 = new Reqnroll.Table(new string[] {
-                            "date",
-                            "description",
-                            "debit account",
-                            "credit account",
-                            "amount"});
+                            "Type",
+                            "Account",
+                            "Amount"});
                 table61.AddRow(new string[] {
-                            "2024-01-01",
-                            "Investment by Owner",
+                            "Debit",
                             "Cash",
-                            "Owner\'s Equity",
                             "1000"});
                 table61.AddRow(new string[] {
-                            "2024-01-02",
-                            "Purchase office supplies",
-                            "Office Supplies",
-                            "Accounts Payable",
-                            "200"});
+                            "Credit",
+                            "Owner\'s Equity",
+                            "1000"});
 #line 7
-    await testRunner.GivenAsync("multiple journal entries recorded", ((string)(null)), table61, "Given ");
-#line hidden
-#line 11
-    await testRunner.WhenAsync("I view the ledger", ((string)(null)), ((Reqnroll.Table)(null)), "When ");
+    await testRunner.GivenAsync("a new transaction with date \"2024-01-01\", description \"Investment by Owner\", and " +
+                        "the following entries", ((string)(null)), table61, "Given ");
 #line hidden
                 Reqnroll.Table table62 = new Reqnroll.Table(new string[] {
-                            "account",
-                            "debit",
-                            "credit",
-                            "balance"});
+                            "Type",
+                            "Account",
+                            "Amount"});
                 table62.AddRow(new string[] {
-                            "Cash",
-                            "1000",
-                            "0",
-                            "1000"});
-                table62.AddRow(new string[] {
-                            "Owner\'s Equity",
-                            "0",
-                            "1000",
-                            "1000"});
-                table62.AddRow(new string[] {
+                            "Debit",
                             "Office Supplies",
-                            "200",
-                            "0",
                             "200"});
                 table62.AddRow(new string[] {
+                            "Credit",
                             "Accounts Payable",
-                            "0",
-                            "200",
                             "200"});
-#line 12
-    await testRunner.ThenAsync("I should see the updated balances of the ledger accounts", ((string)(null)), table62, "Then ");
+#line 11
+    await testRunner.AndAsync("a new transaction with date \"2024-01-02\", description \"Purchase office supplies\"," +
+                        " and the following entries", ((string)(null)), table62, "And ");
+#line hidden
+#line 15
+    await testRunner.WhenAsync("the transaction is recorded", ((string)(null)), ((Reqnroll.Table)(null)), "When ");
+#line hidden
+#line 16
+    await testRunner.WhenAsync("I view the ledger", ((string)(null)), ((Reqnroll.Table)(null)), "When ");
+#line hidden
+#line 17
+    await testRunner.ThenAsync("the ledger should update the \"Cash\" account with a debit of 1000", ((string)(null)), ((Reqnroll.Table)(null)), "Then ");
+#line hidden
+#line 18
+    await testRunner.AndAsync("the ledger should update the \"Owner\'s Equity\" account with a credit of 1000", ((string)(null)), ((Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 19
+    await testRunner.AndAsync("the ledger should update the \"Office Supplies\" account with a debit of 200", ((string)(null)), ((Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 20
+    await testRunner.AndAsync("the ledger should update the \"Accounts Payable\" account with a credit of 200", ((string)(null)), ((Reqnroll.Table)(null)), "And ");
+#line hidden
+                Reqnroll.Table table63 = new Reqnroll.Table(new string[] {
+                            "Account",
+                            "Balance"});
+                table63.AddRow(new string[] {
+                            "Cash",
+                            "+1000"});
+                table63.AddRow(new string[] {
+                            "Owner\'s Equity",
+                            "-1000"});
+                table63.AddRow(new string[] {
+                            "Office Supplies",
+                            "+200"});
+                table63.AddRow(new string[] {
+                            "Accounts Payable",
+                            "-200"});
+#line 21
+    await testRunner.AndAsync("I should see the updated balances of the ledger accounts", ((string)(null)), table63, "And ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();
