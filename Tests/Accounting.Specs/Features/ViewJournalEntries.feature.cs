@@ -107,49 +107,86 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 await this.ScenarioStartAsync();
                 Reqnroll.Table table57 = new Reqnroll.Table(new string[] {
-                            "date",
-                            "description",
-                            "debit account",
-                            "credit account",
-                            "amount"});
+                            "Type",
+                            "Account",
+                            "Amount"});
                 table57.AddRow(new string[] {
-                            "2024-01-01",
-                            "Investment by Owner",
+                            "Debit",
                             "Cash",
-                            "Owner\'s Equity",
                             "1000"});
                 table57.AddRow(new string[] {
-                            "2024-01-02",
-                            "Purchase office supplies",
-                            "Office Supplies",
-                            "Accounts Payable",
-                            "200"});
+                            "Credit",
+                            "Owner\'s Equity",
+                            "1000"});
 #line 7
-    await testRunner.GivenAsync("multiple journal entries recorded", ((string)(null)), table57, "Given ");
-#line hidden
-#line 11
-    await testRunner.WhenAsync("I view the journal", ((string)(null)), ((Reqnroll.Table)(null)), "When ");
+    await testRunner.GivenAsync("a new transaction with date \"2024-01-01\", description \"Investment by Owner\", and " +
+                        "the following entries", ((string)(null)), table57, "Given ");
 #line hidden
                 Reqnroll.Table table58 = new Reqnroll.Table(new string[] {
-                            "date",
-                            "description",
-                            "debit account",
-                            "credit account",
-                            "amount"});
+                            "Type",
+                            "Account",
+                            "Amount"});
                 table58.AddRow(new string[] {
-                            "2024-01-01",
-                            "Investment by Owner",
-                            "Cash",
-                            "Owner\'s Equity",
-                            "1000"});
-                table58.AddRow(new string[] {
-                            "2024-01-02",
-                            "Purchase office supplies",
+                            "Debit",
                             "Office Supplies",
+                            "200"});
+                table58.AddRow(new string[] {
+                            "Credit",
                             "Accounts Payable",
                             "200"});
-#line 12
-    await testRunner.ThenAsync("I should see all the journal entries", ((string)(null)), table58, "Then ");
+#line 11
+    await testRunner.AndAsync("a new transaction with date \"2024-01-02\", description \"Purchase office supplies\"," +
+                        " and the following entries", ((string)(null)), table58, "And ");
+#line hidden
+#line 15
+    await testRunner.WhenAsync("the transaction is recorded", ((string)(null)), ((Reqnroll.Table)(null)), "When ");
+#line hidden
+#line 16
+    await testRunner.AndAsync("I view the journal", ((string)(null)), ((Reqnroll.Table)(null)), "And ");
+#line hidden
+                Reqnroll.Table table59 = new Reqnroll.Table(new string[] {
+                            "Type",
+                            "Account",
+                            "Amount"});
+                table59.AddRow(new string[] {
+                            "Debit",
+                            "Cash",
+                            "1000"});
+                table59.AddRow(new string[] {
+                            "Credit",
+                            "Owner\'s Equity",
+                            "1000"});
+#line 17
+    await testRunner.ThenAsync("the journal should have a transaction with date \"2024-01-01\", description \"Invest" +
+                        "ment by Owner\", and the following entries", ((string)(null)), table59, "Then ");
+#line hidden
+                Reqnroll.Table table60 = new Reqnroll.Table(new string[] {
+                            "Type",
+                            "Account",
+                            "Amount"});
+                table60.AddRow(new string[] {
+                            "Debit",
+                            "Office Supplies",
+                            "200"});
+                table60.AddRow(new string[] {
+                            "Credit",
+                            "Accounts Payable",
+                            "200"});
+#line 21
+    await testRunner.AndAsync("the journal should have a transaction with date \"2024-01-02\", description \"Purcha" +
+                        "se office supplies\", and the following entries", ((string)(null)), table60, "And ");
+#line hidden
+#line 25
+    await testRunner.AndAsync("the ledger should update the \"Cash\" account with a debit of 1000", ((string)(null)), ((Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 26
+    await testRunner.AndAsync("the ledger should update the \"Owner\'s Equity\" account with a credit of 1000", ((string)(null)), ((Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 27
+    await testRunner.AndAsync("the ledger should update the \"Office Supplies\" account with a debit of 200", ((string)(null)), ((Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 28
+    await testRunner.AndAsync("the ledger should update the \"Accounts Payable\" account with a credit of 200", ((string)(null)), ((Reqnroll.Table)(null)), "And ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();

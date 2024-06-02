@@ -4,12 +4,12 @@ namespace Accounting.Specs.StepDefinitions
 {
     public partial class Steps
     {
-        private Transaction? _transaction;
+        private List<Transaction> _transactions = new();
 
         [Given("a new transaction with date {string}, description {string}, and the following entries")]
         public void GivenANewTransactionWithDateDescriptionAndTheFollowingEntries(DateTimeOffset transactionDate, string description, DataTable entries)
         {
-            _transaction = Transaction.Create(transactionDate, description);
+            var transaction = Transaction.Create(transactionDate, description);
 
             foreach (var row in entries.Rows)
             {
@@ -17,24 +17,28 @@ namespace Accounting.Specs.StepDefinitions
                 var amount = double.Parse(row["Amount"]);
 
                 if (row["Type"] == "Debit")
-                    _transaction.AddDebitEntry(DebitEntry.Create(account, amount));
+                    transaction.AddDebitEntry(DebitEntry.Create(account, amount));
                 else
-                    _transaction.AddCreditEntry(CreditEntry.Create(account, amount));
+                    transaction.AddCreditEntry(CreditEntry.Create(account, amount));
             }
+
+            _transactions.Add(transaction);
         }
 
 
         [When("the transaction is recorded")]
         public void WhenTheTransactionIsRecorded()
         {
-            _journal!.AddTransaction(_transaction!);
+            foreach (var transaction in _transactions)
+                _journal!.AddTransaction(transaction);
+
             _ledger!.Initialize(_journal!);
         }
 
         [Then("the journal should have a transaction with date {string}, description {string}, and the following entries")]
         public void ThenTheJournalShouldHaveATransactionWithDateDescriptionAndTheFollowingEntries(DateTimeOffset transactionDate, string description, DataTable entries)
         {
-            var transaction = _journal!.Transactions[0];
+            var transaction = _journal!.Transactions.Single(x => x.Date == transactionDate && x.Description == description);
 
             transaction.Date.Should().Be(transactionDate);
             transaction.Description.Should().Be(description);
