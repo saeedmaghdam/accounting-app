@@ -8,36 +8,36 @@
 //      the code is regenerated.
 //  </auto-generated>
 // -----------------------------------------------------------------------------
-namespace AccountingApp.MainForm
-{
+namespace AccountingApp.MainForm {
     using System;
     using Terminal.Gui;
-
-
-    public partial class MainForm : Terminal.Gui.Window
-    {
-
+    
+    
+    public partial class MainForm : Terminal.Gui.Window {
+        
         private Terminal.Gui.ColorScheme tgDefault;
-
+        
         private Terminal.Gui.ColorScheme redOnBlack;
-
+        
         private Terminal.Gui.ColorScheme blueOnBlack;
-
+        
+        private Terminal.Gui.Window window;
+        
         private Terminal.Gui.MenuBar menuBar;
-
-        private Terminal.Gui.MenuBarItem transactionsMenu;
-
+        
+        private Terminal.Gui.MenuBarItem transactionsF2Menu;
+        
         private Terminal.Gui.MenuItem newTransactionMenuItem;
-
-        private Terminal.Gui.MenuBarItem reportsMenu;
-
+        
+        private Terminal.Gui.MenuBarItem reportsF3Menu;
+        
         private Terminal.Gui.MenuItem reportLedgerMenuItem;
-
+        
         private Terminal.Gui.MenuItem reportJournalMenuItem;
-
-        private void InitializeComponent()
-        {
+        
+        private void InitializeComponent() {
             this.menuBar = new Terminal.Gui.MenuBar();
+            this.window = new Terminal.Gui.Window();
             this.tgDefault = new Terminal.Gui.ColorScheme();
             this.tgDefault.Normal = new Terminal.Gui.Attribute(Terminal.Gui.Color.White, Terminal.Gui.Color.Blue);
             this.tgDefault.HotNormal = new Terminal.Gui.Attribute(Terminal.Gui.Color.BrightCyan, Terminal.Gui.Color.Blue);
@@ -70,7 +70,23 @@ namespace AccountingApp.MainForm
             this.Border.Effect3DBrush = null;
             this.Border.DrawMarginFrame = true;
             this.TextAlignment = Terminal.Gui.TextAlignment.Left;
-            this.Title = "Account App Demo";
+            this.Title = "";
+            this.window.Width = 118;
+            this.window.Height = 27;
+            this.window.X = 0;
+            this.window.Y = 1;
+            this.window.Visible = true;
+            this.window.ColorScheme = this.blueOnBlack;
+            this.window.Modal = false;
+            this.window.IsMdiContainer = false;
+            this.window.Data = "window";
+            this.window.Border.BorderStyle = Terminal.Gui.BorderStyle.None;
+            this.window.Border.Effect3D = false;
+            this.window.Border.Effect3DBrush = null;
+            this.window.Border.DrawMarginFrame = true;
+            this.window.TextAlignment = Terminal.Gui.TextAlignment.Left;
+            this.window.Title = "";
+            this.Add(this.window);
             this.menuBar.Width = Dim.Fill(0);
             this.menuBar.Height = 1;
             this.menuBar.X = 0;
@@ -78,29 +94,27 @@ namespace AccountingApp.MainForm
             this.menuBar.Visible = true;
             this.menuBar.Data = "menuBar";
             this.menuBar.TextAlignment = Terminal.Gui.TextAlignment.Left;
-            this.transactionsMenu = new Terminal.Gui.MenuBarItem();
-            this.transactionsMenu.Title = "_Transactions (F2)";
+            this.transactionsF2Menu = new Terminal.Gui.MenuBarItem();
+            this.transactionsF2Menu.Title = "_Transactions (F2)";
             this.newTransactionMenuItem = new Terminal.Gui.MenuItem();
             this.newTransactionMenuItem.Title = "_New transaction";
             this.newTransactionMenuItem.Data = "newTransactionMenuItem";
-            this.transactionsMenu.Children = new Terminal.Gui.MenuItem[] {
-                    this.newTransactionMenuItem
-            };
-            this.reportsMenu = new Terminal.Gui.MenuBarItem();
-            this.reportsMenu.Title = "_Reports (F3)";
+            this.transactionsF2Menu.Children = new Terminal.Gui.MenuItem[] {
+                    this.newTransactionMenuItem};
+            this.reportsF3Menu = new Terminal.Gui.MenuBarItem();
+            this.reportsF3Menu.Title = "_Reports (F3)";
             this.reportLedgerMenuItem = new Terminal.Gui.MenuItem();
             this.reportLedgerMenuItem.Title = "_Ledger";
             this.reportLedgerMenuItem.Data = "reportLedgerMenuItem";
             this.reportJournalMenuItem = new Terminal.Gui.MenuItem();
             this.reportJournalMenuItem.Title = "_Journal";
             this.reportJournalMenuItem.Data = "reportJournalMenuItem";
-            this.reportsMenu.Children = new Terminal.Gui.MenuItem[] {
+            this.reportsF3Menu.Children = new Terminal.Gui.MenuItem[] {
                     this.reportLedgerMenuItem,
-                    this.reportJournalMenuItem
-            };
+                    this.reportJournalMenuItem};
             this.menuBar.Menus = new Terminal.Gui.MenuBarItem[] {
-                    this.transactionsMenu,
-                    this.reportsMenu};
+                    this.transactionsF2Menu,
+                    this.reportsF3Menu};
             this.Add(this.menuBar);
         }
     }

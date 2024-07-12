@@ -7,14 +7,18 @@
 //      You can make changes to this file and they will not be overwritten when saving.
 //  </auto-generated>
 // -----------------------------------------------------------------------------
-namespace AccountingApp.MainForm {
-    using Terminal.Gui;
-    
+using Terminal.Gui;
+
+namespace AccountingApp.MainForm {    
     
     public partial class MainForm {
         
         public MainForm() {
             InitializeComponent();
+
+            newTransactionMenuItem.Action = () => {
+                window.Add(new NewTransactionForm.NewTransactionForm());
+            };
         }
     }
 }
