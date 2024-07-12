@@ -1,2 +1,8 @@
 ﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+using Terminal.Gui;
+
+Application.Init();
+
+Application.Run(new AccountingApp.MainForm.MainForm());
+
+Application.Shutdown();
