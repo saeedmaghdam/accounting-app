@@ -17,10 +17,37 @@ namespace AccountingApp.NewTransactionForm {
         
         private Terminal.Gui.ColorScheme blueOnBlack;
         
-        private Terminal.Gui.Label label;
+        private Terminal.Gui.Label lblTitle;
+        
+        private Terminal.Gui.Label label5;
+        
+        private Terminal.Gui.ComboBox cmbAccount;
+        
+        private Terminal.Gui.Label label2;
+        
+        private Terminal.Gui.TextField txtDescription;
+        
+        private Terminal.Gui.Label label3;
+        
+        private Terminal.Gui.DateField txtDate;
+        
+        private Terminal.Gui.TimeField txtTime;
+        
+        private Terminal.Gui.Label label4;
+        
+        private Terminal.Gui.TextField txtAmount;
         
         private void InitializeComponent() {
-            this.label = new Terminal.Gui.Label();
+            this.txtAmount = new Terminal.Gui.TextField();
+            this.label4 = new Terminal.Gui.Label();
+            this.txtTime = new Terminal.Gui.TimeField();
+            this.txtDate = new Terminal.Gui.DateField();
+            this.label3 = new Terminal.Gui.Label();
+            this.txtDescription = new Terminal.Gui.TextField();
+            this.label2 = new Terminal.Gui.Label();
+            this.cmbAccount = new Terminal.Gui.ComboBox();
+            this.label5 = new Terminal.Gui.Label();
+            this.lblTitle = new Terminal.Gui.Label();
             this.blueOnBlack = new Terminal.Gui.ColorScheme();
             this.blueOnBlack.Normal = new Terminal.Gui.Attribute(Terminal.Gui.Color.BrightBlue, Terminal.Gui.Color.Black);
             this.blueOnBlack.HotNormal = new Terminal.Gui.Attribute(Terminal.Gui.Color.Cyan, Terminal.Gui.Color.Black);
@@ -41,15 +68,100 @@ namespace AccountingApp.NewTransactionForm {
             this.Border.DrawMarginFrame = true;
             this.TextAlignment = Terminal.Gui.TextAlignment.Left;
             this.Title = "";
-            this.label.Width = 12;
-            this.label.Height = 1;
-            this.label.X = 51;
-            this.label.Y = 14;
-            this.label.Visible = true;
-            this.label.Data = "label";
-            this.label.Text = "Hello World!";
-            this.label.TextAlignment = Terminal.Gui.TextAlignment.Left;
-            this.Add(this.label);
+            this.lblTitle.Width = 4;
+            this.lblTitle.Height = 1;
+            this.lblTitle.X = 0;
+            this.lblTitle.Y = 0;
+            this.lblTitle.Visible = true;
+            this.lblTitle.Data = "lblTitle";
+            this.lblTitle.Text = "New transaction";
+            this.lblTitle.TextAlignment = Terminal.Gui.TextAlignment.Left;
+            this.Add(this.lblTitle);
+            this.label5.Width = 4;
+            this.label5.Height = 1;
+            this.label5.X = 5;
+            this.label5.Y = 4;
+            this.label5.Visible = true;
+            this.label5.Data = "label5";
+            this.label5.Text = "Account";
+            this.label5.TextAlignment = Terminal.Gui.TextAlignment.Left;
+            this.Add(this.label5);
+            this.cmbAccount.Width = 30;
+            this.cmbAccount.Height = 2;
+            this.cmbAccount.X = 5;
+            this.cmbAccount.Y = 6;
+            this.cmbAccount.Visible = true;
+            this.cmbAccount.Data = "cmbAccount";
+            this.cmbAccount.Text = "";
+            this.cmbAccount.TextAlignment = Terminal.Gui.TextAlignment.Left;
+            this.Add(this.cmbAccount);
+            this.label2.Width = 4;
+            this.label2.Height = 1;
+            this.label2.X = 5;
+            this.label2.Y = 10;
+            this.label2.Visible = true;
+            this.label2.Data = "label2";
+            this.label2.Text = "Description";
+            this.label2.TextAlignment = Terminal.Gui.TextAlignment.Left;
+            this.Add(this.label2);
+            this.txtDescription.Width = 47;
+            this.txtDescription.Height = 4;
+            this.txtDescription.X = 5;
+            this.txtDescription.Y = 12;
+            this.txtDescription.Visible = true;
+            this.txtDescription.Secret = false;
+            this.txtDescription.Data = "txtDescription";
+            this.txtDescription.Text = "";
+            this.txtDescription.TextAlignment = Terminal.Gui.TextAlignment.Left;
+            this.Add(this.txtDescription);
+            this.label3.Width = 4;
+            this.label3.Height = 1;
+            this.label3.X = 5;
+            this.label3.Y = 15;
+            this.label3.Visible = true;
+            this.label3.Data = "label3";
+            this.label3.Text = "Transaction Time";
+            this.label3.TextAlignment = Terminal.Gui.TextAlignment.Left;
+            this.Add(this.label3);
+            this.txtDate.Width = 12;
+            this.txtDate.Height = 1;
+            this.txtDate.X = 5;
+            this.txtDate.Y = 17;
+            this.txtDate.Visible = true;
+            this.txtDate.Secret = false;
+            this.txtDate.Data = "txtDate";
+            this.txtDate.Text = " 01/01/0001";
+            this.txtDate.TextAlignment = Terminal.Gui.TextAlignment.Left;
+            this.Add(this.txtDate);
+            this.txtTime.Width = 10;
+            this.txtTime.Height = 1;
+            this.txtTime.X = 18;
+            this.txtTime.Y = 17;
+            this.txtTime.Visible = true;
+            this.txtTime.Secret = false;
+            this.txtTime.Data = "txtTime";
+            this.txtTime.Text = " 02:48:05";
+            this.txtTime.TextAlignment = Terminal.Gui.TextAlignment.Left;
+            this.Add(this.txtTime);
+            this.label4.Width = 15;
+            this.label4.Height = 1;
+            this.label4.X = 5;
+            this.label4.Y = 20;
+            this.label4.Visible = true;
+            this.label4.Data = "label4";
+            this.label4.Text = "Amount";
+            this.label4.TextAlignment = Terminal.Gui.TextAlignment.Left;
+            this.Add(this.label4);
+            this.txtAmount.Width = 16;
+            this.txtAmount.Height = 1;
+            this.txtAmount.X = 5;
+            this.txtAmount.Y = 22;
+            this.txtAmount.Visible = true;
+            this.txtAmount.Secret = false;
+            this.txtAmount.Data = "txtAmount";
+            this.txtAmount.Text = "";
+            this.txtAmount.TextAlignment = Terminal.Gui.TextAlignment.Left;
+            this.Add(this.txtAmount);
         }
     }
 }
